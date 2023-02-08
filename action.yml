@@ -62,6 +62,6 @@ runs:
     - name: Perform Terraformx Apply
       working-directory: ${{ inputs.dir }}
       run: |
-        chmod +x $GITHUB_WORKSPACE/custom_github_actions/terraformx_apply/exe/apply
-        $GITHUB_WORKSPACE/custom_github_actions/terraformx_apply/exe/apply
+        chmod +x $GITHUB_WORKSPACE/terraformx_apply/exe/apply
+        $GITHUB_WORKSPACE/terraformx_apply/exe/apply
       shell: bash
