@@ -14,9 +14,23 @@ inputs:
   az_service_principals:
     description: "List of Azure Subscriptions, logins and passwords"
     required: false
+  active_stages:
+    description: "Specify the active stages overriding the active stages in the workflow."
+    required: false
+    default: ""
 runs:
   using: "composite"
   steps:
+    - name: Set dir to store files from custom action
+      run: echo "ACTION_BASE_DIR=terraformx_apply" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Checkout aws_spoke
+      uses: actions/checkout@v3
+      with:
+        repository: jlieow/${{ env.ACTION_BASE_DIR }}
+        path: ${{ env.ACTION_BASE_DIR }}
+
     - name: Configure Azure credentials
       run: |
 
@@ -62,6 +76,6 @@ runs:
     - name: Perform Terraformx Apply
       working-directory: ${{ inputs.dir }}
       run: |
-        chmod +x $GITHUB_WORKSPACE/custom_github_actions/terraformx_apply/exe/apply
-        $GITHUB_WORKSPACE/custom_github_actions/terraformx_apply/exe/apply
+        chmod +x $GITHUB_WORKSPACE/$ACTION_BASE_DIR/exe/apply
+        $GITHUB_WORKSPACE/$ACTION_BASE_DIR/exe/apply -active-stages=$active_stages
       shell: bash

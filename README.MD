@@ -18,7 +18,7 @@ jobs:
 
       - name: Perform Terraformx Apply
         id: terraformx_apply
-        uses: jlieow/terraformx_apply@V1 # Uses an action in the jlieow repo tagged as V1
+        uses: jlieow/terraformx_apply@V1 # Uses an action in the repo terraformx_apply owned by jlieow tagged as V1
         with:
           dir: hub # Remember to set the tag dir too
           aws_profiles: |
@@ -38,5 +38,4 @@ jobs:
                 "az_subscription_id": ${{ toJSON(secrets.AZ_SUBSCRIPTION_ID) }}
               }
             ]
-
 ```
