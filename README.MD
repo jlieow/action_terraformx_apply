@@ -21,6 +21,10 @@ jobs:
         uses: jlieow/terraformx_apply@V1 # Uses an action in the jlieow repo tagged as V1
         with:
           dir: hub # Remember to set the tag dir too
+          terraform_env_variables: |
+            key=value,
+            test=this,
+            hello=world
           aws_profiles: |
             [
               {
