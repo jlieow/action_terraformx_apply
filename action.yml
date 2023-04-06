@@ -20,6 +20,12 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Checkout aws_spoke
+      uses: actions/checkout@v3
+      with:
+        repository: jlieow/terraformx_apply
+        path: terraformx_apply
+        
     - name: Export Terraform Environmental Variables
       run: |
         terraform_env_variables=$(cat <<EOF
