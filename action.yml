@@ -93,6 +93,7 @@ runs:
       working-directory: ${{ inputs.dir }}
       run: |
         pwd
+        ls
         chmod +x $GITHUB_WORKSPACE/action_terraformx_apply/exe/apply
         $GITHUB_WORKSPACE/action_terraformx_apply/exe/apply
       shell: bash
