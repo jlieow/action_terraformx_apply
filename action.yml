@@ -86,8 +86,8 @@ runs:
     - name: Configure GCP Credentials
       run: |
         echo ${{ inputs.gcp_service_account_key }} > ${{ github.workspace }}/key.json
-        echo "Remove new lines"
-        tr --delete '\n' < ${{ github.workspace }}/key.json
+        echo "Removing new lines"
+        echo -n $(tr -d "\n" < ${{ github.workspace }}/key.json) > ${{ github.workspace }}/key.json
         echo "GOOGLE_APPLICATION_CREDENTIALS=${{ github.workspace }}/key.json" >> "$GITHUB_ENV"
       shell: bash
 
