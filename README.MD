@@ -18,7 +18,7 @@ jobs:
 
       - name: Perform Terraformx Apply
         id: terraformx_apply
-        uses: jlieow/terraformx_apply@V1 # Uses an action in the jlieow repo tagged as V1
+        uses: jlieow/action_terraformx_apply@V1 # Uses an action in the jlieow repo tagged as V1
         with:
           dir: hub # Remember to set the tag dir too
           terraform_env_variables: |
@@ -42,5 +42,6 @@ jobs:
                 "az_subscription_id": ${{ toJSON(secrets.AZ_SUBSCRIPTION_ID) }}
               }
             ]
+          gcp_service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
 
 ```
