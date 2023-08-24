@@ -85,15 +85,13 @@ runs:
 
     - name: Configure GCP Credentials
       run: |
-        echo ${{ inputs.gcp_service_account_key }} > ${{ github.workspace }}/key.json
+        echo '${{ inputs.gcp_service_account_key }}' > ${{ github.workspace }}/key.json
         echo "GOOGLE_APPLICATION_CREDENTIALS=${{ github.workspace }}/key.json" >> "$GITHUB_ENV"
       shell: bash
 
     - name: Perform Terraformx Apply
       working-directory: ${{ inputs.dir }}
       run: |
-        pwd
-        ls
         chmod +x $GITHUB_WORKSPACE/action_terraformx_apply/exe/apply
         $GITHUB_WORKSPACE/action_terraformx_apply/exe/apply
       shell: bash
