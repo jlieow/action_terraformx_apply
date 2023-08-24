@@ -85,7 +85,13 @@ runs:
 
     - name: Configure GCP Credentials
       run: |
-        echo '${{ inputs.gcp_service_account_key }}' > ${{ github.workspace }}/key.json
+        echo ${{ inputs.gcp_service_account_key }} > ${{ github.workspace }}/key.json
+
+        echo inputs
+        echo ${{ inputs.gcp_service_account_key }}
+        echo key
+        cat ${{ github.workspace }}/key.json
+
         echo "GOOGLE_APPLICATION_CREDENTIALS=${{ github.workspace }}/key.json" >> "$GITHUB_ENV"
       shell: bash
 
