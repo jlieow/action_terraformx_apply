@@ -18,8 +18,9 @@ jobs:
 
       - name: Perform Terraformx Apply
         id: terraformx_apply
-        uses: jlieow/terraformx_apply@V1 # Uses an action in the jlieow repo tagged as V1
+        uses: jlieow/terraformx_apply@V3 # Uses an action in the jlieow repo tagged as V3
         with:
+          action_ref: ${{ github.action_ref }}
           dir: hub # Remember to set the tag dir too
           terraform_env_variables: |
             key=value,
