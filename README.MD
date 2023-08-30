@@ -46,7 +46,6 @@ jobs:
                 "sa1_profile_name": ${{ secrets.SA1_KEY }}
               }
             ]
-
 ```
 
 Read [GCP Info](GCP_INFO.md) for GCP specific instructions
