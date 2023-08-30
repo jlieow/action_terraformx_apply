@@ -42,5 +42,14 @@ jobs:
                 "az_subscription_id": ${{ toJSON(secrets.AZ_SUBSCRIPTION_ID) }}
               }
             ]
+          gcp_profiles: |
+            [
+              {
+                "gce_service_account_key": ${{ secrets.GCE_SERVICE_ACCOUNT_KEY }}
+              },
+              {
+                "buckets_service_account_key": ${{ secrets.BUCKETS_SERVICE_ACCOUNT_KEY }}
+              }
+            ]
 
 ```
