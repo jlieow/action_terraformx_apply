@@ -1,4 +1,4 @@
-Sample workflow to reference to this action
+# Sample workflow to reference to this action
 
 ```
 name: Perform Terraformx Apply Action using Linux exe
@@ -18,14 +18,12 @@ jobs:
 
       - name: Perform Terraformx Apply
         id: terraformx_apply
-        uses: jlieow/terraformx_apply@V3 # Uses an action in the jlieow repo tagged as V3
+        uses: jlieow/action_terraformx_apply@V1 # Uses an action in the jlieow repo tagged as V1
         with:
           action_ref: ${{ github.action_ref }}
           dir: hub # Remember to set the tag dir too
           terraform_env_variables: |
-            key=value,
-            test=this,
-            hello=world
+            TF_VAR_path_to_sa1=${{ github.workspace }}/sa1_profile_name.json
           aws_profiles: |
             [
               {
@@ -43,5 +41,12 @@ jobs:
                 "az_subscription_id": ${{ toJSON(secrets.AZ_SUBSCRIPTION_ID) }}
               }
             ]
-
+          gcp_profiles: |
+            [
+              {
+                "sa1_profile_name": ${{ secrets.SA1_KEY }}
+              }
+            ]
 ```
+
+Read [GCP Info](GCP_INFO.md) for GCP specific instructions
