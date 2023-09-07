@@ -23,12 +23,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout jlieow/action_terraformx_apply repo to store files from custom action
-      uses: actions/checkout@v3
-      with:
-        repository: jlieow/action_terraformx_apply
-        path: action_terraformx_apply
-        
     - name: Export Terraform Environmental Variables
       run: |
         terraform_env_variables=$(cat <<EOF
@@ -88,12 +82,11 @@ runs:
         jq -r '.[] | to_entries[] | "\(.key) \(.value | tojson )"' <<< '${{ inputs.gcp_profiles }}' | while read -r key value ; do
           jq -n "$value" > ${{ github.workspace }}/"$key".json
         done
-        echo "TF_VAR_github_workspace=${{ github.workspace }}" >> "$GITHUB_ENV"
       shell: bash
 
     - name: Perform Terraformx Apply
       working-directory: ${{ inputs.dir }}
       run: |
-        chmod +x $GITHUB_WORKSPACE/action_terraformx_apply/exe/apply
-        $GITHUB_WORKSPACE/action_terraformx_apply/exe/apply
+        chmod +x $GITHUB_ACTION_PATH/exe/apply
+        $GITHUB_ACTION_PATH/exe/apply
       shell: bash
