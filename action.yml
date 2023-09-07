@@ -26,13 +26,18 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout jlieow/action_terraformx_apply repo to store files from custom action
-      uses: actions/checkout@v3
-      with:
-        repository: jlieow/action_terraformx_apply
-        path: action_terraformx_apply
-        ref: ${{ inputs.action_ref }}
-        
+    # - name: Checkout jlieow/action_terraformx_apply repo to store files from custom action
+    #   uses: actions/checkout@v3
+    #   with:
+    #     repository: jlieow/action_terraformx_apply
+    #     path: action_terraformx_apply
+    #     ref: ${{ inputs.action_ref }}
+    - name: List action path
+      run: |
+        ls ${{ github.action_path }}
+        ls $GITHUB_ACTION_PATH
+      shell: bash
+
     - name: Export Terraform Environmental Variables
       run: |
         terraform_env_variables=$(cat <<EOF
